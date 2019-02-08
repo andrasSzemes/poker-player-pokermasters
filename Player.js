@@ -1,6 +1,6 @@
 class Player {
   static get VERSION() {
-    return '1.0';
+    return '1.1';
   }
 
   static betRequest(gameState, bet) {
@@ -10,7 +10,6 @@ class Player {
       if (player.name === 'PokerMasters') {
         my_player = player;
         console.log(player.status);
-        console.log(gameState.bet_index);
       }
     }
 
@@ -19,8 +18,10 @@ class Player {
     let rankTwo = holeCards[1].rank;
     let suitOne = holeCards[0].suit;
     let suitTwo = holeCards[1].suit;
+    let middleRankCards = ['9', '10'];
     let highCards = ['J', 'Q', 'K', 'A'];
     let highCardsInHand = highCards.includes(rankOne) && highCards.includes(rankTwo);
+    let middleCardsInHand = middleRankCards.includes(rankOne) && middleRankCards.includes(rankTwo);
     let highCardInHand = highCards.includes(rankOne) || highCards.includes(rankTwo);
     let comCards = gameState.community_cards;
     let isPairInHand = rankOne === rankTwo;
@@ -28,11 +29,18 @@ class Player {
     let minRaise = gameState.minimum_raise;
 
 
-    if ((isPairInHand && highCardsInHand) || highCardsInHand) {
-      bet(my_player.stack)
+    if (isPairInHand && highCardsInHand) {
+      bet(my_player.stack);
+    } else if(highCardsInHand) {
+      let halfStack = Math.round(my_player.stack / 2);
+      bet(halfStack);
     } else if (isPairInHand) {
-      let betToPut = minRaise + 100 < my_player.stack ? minRaise + 100 : my_player.stack;
-      bet(betToPut)
+      let halfStack = Math.round(my_player.stack / 2);
+      if(middleCardsInHand) {
+        bet(halfStack)
+      } else {
+        bet(minRaise + 100)
+      }
     } else if( isSameSuitInHand && highCardInHand) {
         if(comCards.length === 0) {
           bet(minRaise);
@@ -44,12 +52,12 @@ class Player {
             }
           }
           if(suitCounter >= 4) {
-            bet(my_player.stack)
+            bet(my_player.stack);
           } else{
             for (let i = 0; i < comCards.length; i++) {
               if(comCards[i].rank === rankOne || comCards[i].rank === rankTwo) {
                 if (highCards.includes(comCards[i].rank)) {
-                  bet(my_player.stack)
+                  bet(my_player.stack);
                 } else {
                   bet(minRaise);
                 }
