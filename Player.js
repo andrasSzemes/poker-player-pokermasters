@@ -6,11 +6,9 @@ class Player {
   static betRequest(gameState, bet) {
     console.log(gameState);
     console.log(bet);
-    let json = JSON.parse(gameState);
-    console.log(json);
 
     let holeCards = [];
-    for (const player of json.players) {
+    for (const player of gameState.players) {
       if (player.name === 'PokerMasters') {
         holeCards = player.hole_cards;
         console.log(player);
@@ -18,7 +16,7 @@ class Player {
     }
 
     if (holeCards[0].rank === holeCards[1].rank) {
-      bet(json.minimum_raise)
+      bet(gameState.minimum_raise)
     } else {
       bet(0);
     }
