@@ -5,6 +5,7 @@ class Player {
 
   static betRequest(gameState, bet) {
     let json = JSON.parse(gameState);
+    console.log(json);
 
     let holeCards = [];
     for (const player of json.players) {
