@@ -17,8 +17,15 @@ class Player {
       }
     }
 
+    let highCards = ['10', 'J', 'Q', 'K', 'A'];
+    let highCardsInHand = highCards.include(holeCards[0].rank) && highCards.include(holeCards[1].rank);
+
+
     if (holeCards[0].rank === holeCards[1].rank) {
-      console.log('all in');
+      console.log('all in for pair');
+      bet(my_stack)
+    } else if (highCardsInHand) {
+      console.log('all in for highCards');
       bet(my_stack)
     } else {
       console.log('Fold in');
