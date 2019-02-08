@@ -4,6 +4,8 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
+    console.log(gameState);
+    console.log(bet);
     let json = JSON.parse(gameState);
     console.log(json);
 
