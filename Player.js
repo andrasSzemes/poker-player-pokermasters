@@ -26,11 +26,13 @@ class Player {
       //all in for pair and high cards
       bet(my_stack)
     } else if (holeCards[0].rank === holeCards[1].rank) {
-      //let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      console.log(betToPut);
       bet(my_stack)
     } else if (highCardsInHand) {
       //console.log('all in for highCards');
-      //let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      console.log(betToPut);
       bet(my_stack)
     } else {
       //console.log('Fold in');
