@@ -13,7 +13,8 @@ class Player {
         //console.log('my cards');
         //console.log(holeCards);
         //console.log('my stack: ' + player.stack);
-        my_stack = player.stack
+        my_stack = player.stack;
+        console.log(player.status);
       }
     }
 
