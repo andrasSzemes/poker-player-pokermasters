@@ -9,7 +9,8 @@ class Player {
     let holeCards = [];
     for (const player of json.players) {
       if (player.name === 'PokerMasters') {
-        holeCards = player.hole_cards
+        holeCards = player.hole_cards;
+        console.log(player);
       }
     }
 
