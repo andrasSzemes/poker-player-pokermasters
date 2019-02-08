@@ -24,14 +24,10 @@ class Player {
     let highCardsInHand = highCards.includes(holeCards[0].rank) && highCards.includes(holeCards[1].rank);
 
 
-    if (holeCards[0].rank === holeCards[1].rank && highCardsInHand) {
+    if ((holeCards[0].rank === holeCards[1].rank && highCardsInHand) || highCardsInHand) {
       //all in for pair and high cards
       bet(my_stack)
     } else if (holeCards[0].rank === holeCards[1].rank) {
-      let betToPut = gameState.minimum_raise + 100 < my_player.stack ? gameState.minimum_raise + 100 : my_player.stack;
-      bet(betToPut)
-    } else if (highCardsInHand) {
-      //console.log('all in for highCards');
       let betToPut = gameState.minimum_raise + 100 < my_player.stack ? gameState.minimum_raise + 100 : my_player.stack;
       bet(betToPut)
     } else {
