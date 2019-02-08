@@ -7,8 +7,10 @@ class Player {
 
     let holeCards = [];
     let my_stack = '';
+    let my_player ='';
     for (const player of gameState.players) {
       if (player.name === 'PokerMasters') {
+        my_player = player;
         holeCards = player.hole_cards;
         //console.log('my cards');
         //console.log(holeCards);
@@ -26,12 +28,12 @@ class Player {
       //all in for pair and high cards
       bet(my_stack)
     } else if (holeCards[0].rank === holeCards[1].rank) {
-      let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      let betToPut = gameState.minimum_raise + 100 < my_player.stack ? gameState.minimum_raise + 100 : my_player.stack;
       console.log(betToPut);
       bet(my_stack)
     } else if (highCardsInHand) {
       //console.log('all in for highCards');
-      let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      let betToPut = gameState.minimum_raise + 100 < my_player.stack ? gameState.minimum_raise + 100 : my_player.stack;
       console.log(betToPut);
       bet(my_stack)
     } else {
