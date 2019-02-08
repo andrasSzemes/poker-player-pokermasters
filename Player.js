@@ -4,7 +4,20 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
-    bet(0);
+    let json = JSON.parse(gameState);
+
+    let holeCards = [];
+    for (const player of json.players) {
+      if (player.name === 'PokerMasters') {
+        holeCards = player.hole_cards
+      }
+    }
+
+    if (holeCards[0].rank === holeCards[1].rank) {
+      bet(50)
+    } else {
+      bet(0);
+    }
   }
 
   static showdown(gameState) {
