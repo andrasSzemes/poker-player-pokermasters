@@ -22,6 +22,9 @@ class Player {
 
     let highCards = ['J', 'Q', 'K', 'A'];
     let highCardsInHand = highCards.includes(holeCards[0].rank) && highCards.includes(holeCards[1].rank);
+    let highCardInHand = highCards.includes(holeCards[0].rank) || highCards.includes(holeCards[1].rank);
+    let comCards = gameState.community_cards;
+
 
 
     if ((holeCards[0].rank === holeCards[1].rank && highCardsInHand) || highCardsInHand) {
@@ -30,6 +33,22 @@ class Player {
     } else if (holeCards[0].rank === holeCards[1].rank) {
       let betToPut = gameState.minimum_raise + 100 < my_player.stack ? gameState.minimum_raise + 100 : my_player.stack;
       bet(betToPut)
+    } else if(holeCards[0].suit === holeCards[1].suit && highCardInHand) {
+        if(comCards.length === 0) {
+          bet(gameState.minimum_raise);
+        } else if(comCards.length >= 3) {
+          let suitCounter = 2;
+          for (let i = 0; i < comCards.length; i++) {
+            if(comCards[i].suit === holeCards[0].suit) {
+              suitCounter += 1;
+            }
+          }
+          if(suitCounter >= 4) {
+            bet(my_stack)
+          } else {
+            bet(0);
+          }
+        }
     } else {
       //console.log('Fold in');
       bet(0);
