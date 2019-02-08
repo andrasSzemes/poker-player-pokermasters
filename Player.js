@@ -10,6 +10,7 @@ class Player {
       if (player.name === 'PokerMasters') {
         my_player = player;
         console.log(player.status);
+        console.log(gameState.round);
       }
     }
 
