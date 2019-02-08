@@ -14,7 +14,7 @@ class Player {
     }
 
     if (holeCards[0].rank === holeCards[1].rank) {
-      bet(50)
+      bet(json.minimum_raise)
     } else {
       bet(0);
     }
