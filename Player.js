@@ -14,7 +14,6 @@ class Player {
     }
 
     let holeCards = my_player.hole_cards;
-    let allIn = my_player.stack;
     let rankOne = holeCards[0].rank;
     let rankTwo = holeCards[1].rank;
     let suitOne = holeCards[0].suit;
@@ -29,9 +28,9 @@ class Player {
 
 
     if ((isPairInHand && highCardsInHand) || highCardsInHand) {
-      bet(allIn)
+      bet(my_player.stack)
     } else if (isPairInHand) {
-      let betToPut = minRaise + 100 < my_player.stack ? minRaise + 100 : allIn;
+      let betToPut = minRaise + 100 < my_player.stack ? minRaise + 100 : my_player.stack;
       bet(betToPut)
     } else if( isSameSuitInHand && highCardInHand) {
         if(comCards.length === 0) {
@@ -44,12 +43,12 @@ class Player {
             }
           }
           if(suitCounter >= 4) {
-            bet(allIn)
+            bet(my_player.stack)
           } else{
             for (let i = 0; i < comCards.length; i++) {
               if(comCards[i].rank === rankOne || comCards[i].rank === rankTwo) {
                 if (highCards.includes(comCards[i].rank)) {
-                  bet(allIn)
+                  bet(my_player.stack)
                 } else {
                   bet(minRaise);
                 }
