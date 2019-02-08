@@ -10,9 +10,9 @@ class Player {
     for (const player of gameState.players) {
       if (player.name === 'PokerMasters') {
         holeCards = player.hole_cards;
-        console.log('my cards');
-        console.log(holeCards);
-        console.log('my stack: ' + player.stack);
+        //console.log('my cards');
+        //console.log(holeCards);
+        //console.log('my stack: ' + player.stack);
         my_stack = player.stack
       }
     }
@@ -21,14 +21,18 @@ class Player {
     let highCardsInHand = highCards.includes(holeCards[0].rank) && highCards.includes(holeCards[1].rank);
 
 
-    if (holeCards[0].rank === holeCards[1].rank) {
-      console.log('all in for pair');
+    if (holeCards[0].rank === holeCards[1].rank && highCardsInHand) {
+      //all in for pair and high cards
       bet(my_stack)
+    } else if (holeCards[0].rank === holeCards[1].rank) {
+      let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      bet(betToPut)
     } else if (highCardsInHand) {
-      console.log('all in for highCards');
-      bet(my_stack)
+      //console.log('all in for highCards');
+      let betToPut = gameState.minimum_raise + 100 < player.stack ? gameState.minimum_raise + 100 : player.stack;
+      bet(betToPut)
     } else {
-      console.log('Fold in');
+      //console.log('Fold in');
       bet(0);
     }
   }
