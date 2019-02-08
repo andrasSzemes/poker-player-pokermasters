@@ -9,7 +9,8 @@ class Player {
     for (const player of gameState.players) {
       if (player.name === 'PokerMasters') {
         holeCards = player.hole_cards;
-        console.log(holeCards);
+        console.log('my cards: ' + holeCards);
+        console.log('my stack: ' + player.stack)
       }
     }
 
