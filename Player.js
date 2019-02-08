@@ -48,7 +48,11 @@ class Player {
           } else{
             for (let i = 0; i < comCards.length; i++) {
               if(comCards[i].rank === holeCards[0].rank || comCards[i].rank === holeCards[1].rank) {
-                bet(my_stack)
+                if (highCards.includes(comCards[i].rank)) {
+                  bet(my_stack)
+                } else {
+                  bet(gameState.minimum_raise);
+                }
               }
             }
             bet(0);
