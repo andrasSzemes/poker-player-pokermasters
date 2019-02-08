@@ -4,20 +4,20 @@ class Player {
   }
 
   static betRequest(gameState, bet) {
-    console.log(gameState);
-    console.log(bet);
 
     let holeCards = [];
     for (const player of gameState.players) {
       if (player.name === 'PokerMasters') {
         holeCards = player.hole_cards;
-        console.log(player);
+        console.log(holeCards);
       }
     }
 
     if (holeCards[0].rank === holeCards[1].rank) {
+      console.log('minimum_raise given in: ' + gameState.minimum_raise);
       bet(gameState.minimum_raise)
     } else {
+      console.log('Fold in');
       bet(0);
     }
   }
