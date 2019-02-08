@@ -18,7 +18,7 @@ class Player {
     }
 
     if (holeCards[0].rank === holeCards[1].rank) {
-      console.log('minimum_raise given in: ' + gameState.minimum_raise);
+      console.log('all in');
       bet(my_stack)
     } else {
       console.log('Fold in');
