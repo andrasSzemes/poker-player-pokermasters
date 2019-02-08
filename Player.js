@@ -45,7 +45,12 @@ class Player {
           }
           if(suitCounter >= 4) {
             bet(my_stack)
-          } else {
+          } else{
+            for (let i = 0; i < comCards.length; i++) {
+              if(comCards[i].rank === holeCards[0].rank || comCards[i].rank === holeCards[1].rank) {
+                bet(my_stack)
+              }
+            }
             bet(0);
           }
         }
