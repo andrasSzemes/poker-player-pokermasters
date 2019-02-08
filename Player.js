@@ -18,7 +18,7 @@ class Player {
     }
 
     let highCards = ['10', 'J', 'Q', 'K', 'A'];
-    let highCardsInHand = highCards.include(holeCards[0].rank) && highCards.include(holeCards[1].rank);
+    let highCardsInHand = highCards.includes(holeCards[0].rank) && highCards.includes(holeCards[1].rank);
 
 
     if (holeCards[0].rank === holeCards[1].rank) {
